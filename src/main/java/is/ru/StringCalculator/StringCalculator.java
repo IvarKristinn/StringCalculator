@@ -1,30 +1,23 @@
 package is.ru.StringCalculator;
-
 import java.util.ArrayList;
 
 public class StringCalculator
 {
-
   public static int add(String text)
   {
   	if(text.equals(""))
   	{
   		return 0;
   	}
-
-  	else if(text.contains("\n") || text.contains(",") || text.contains("//"))
+	else if(text.contains("\n") || text.contains(",") || text.contains("//"))
   	{
   		return sum(splitNumbersNewLineAndComma(text));
   	}
-
-  	else
+	else
   	{
   		return 1;
   	}
-  		
-  }	
-  	
-  
+ }	
   private static int toInt(String number)
   {
   	return Integer.parseInt(number);
@@ -40,42 +33,36 @@ public class StringCalculator
 		{
 			//Does nothing if bigger than 1000
 		}
-
-  		else if(NegativeCheck(number))
+		else if(NegativeCheck(number))
   		{
   			list.add(toInt(number));
   		}
-
-  		else
+		else
   		{
   			total = total + toInt(number);
   		}
-  		
-	}
-
+  	}
 	if(list.size() > 0)
 	{
 		ThrowException(list);
 	}
-
 	return total;
   }
 
   private static String[] splitNumbersNewLineAndComma(String numbers)
   {
-  	String delimiter = ",|\n";
+  	String delim = ",|\n";
   	if(numbers.startsWith("//"))
   	{
   		int deliIndex = numbers.indexOf("//") + 2;
-  		delimiter = delimiter + "|" + numbers.substring(deliIndex,deliIndex + 1);
+  		delim = delim + "|" + numbers.substring(deliIndex,deliIndex + 1);
   		numbers = numbers.substring(deliIndex + 2);
-  		return numbers.split(delimiter);
+  		return numbers.split(delim);
   	}
   	else
   	{
   		return numbers.split("(\n)|(,)");
   	}
-  	
   }
 
   private static void ThrowException( ArrayList<Integer> list ) throws IllegalArgumentException 
@@ -87,14 +74,12 @@ public class StringCalculator
 			{
 				negative_string = negative_string + list.get(i);
 			}
-
 			else 
 			{
 				negative_string = negative_string + ", " + list.get(i);
 			}
 		}
-
-		throw new IllegalArgumentException("Negatives not allowed: " + negative_string);
+	throw new IllegalArgumentException("Negatives not allowed: " + negative_string);
   }
 
   private static boolean NegativeCheck(String number)
@@ -105,5 +90,4 @@ public class StringCalculator
   	}
   	return false;
   }
-
 }

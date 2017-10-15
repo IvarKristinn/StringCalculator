@@ -70,5 +70,4 @@ public class CalculatorTest
   {
 	assertEquals(3, StringCalculator.add("//;\n1;2"));
   }
-
 }
