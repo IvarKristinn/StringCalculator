@@ -35,5 +35,9 @@ public class CalculatorTest
     assertEquals(10+15+32+56, StringCalculator.add("10,15,32,56"));
   }
 
-
+  @Test
+  public void testNewLine()
+  {
+    assertEquals(3, StringCalculator.add("1\n2"));
+  }
 }
