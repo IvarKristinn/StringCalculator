@@ -36,16 +36,28 @@ public class StringCalculator
   	ArrayList<Integer> list = new ArrayList<Integer>();
   	for(String number : numbers)
   	{
-  		if(CheckForNegative(number))
+  		if(toInt(number) > 1000)
+		{
+			//Does nothing if bigger than 1000
+		}
+
+  		else if(CheckForNegative(number))
   		{
   			list.add(toInt(number));
   		}
-  		total = total + toInt(number);
+
+  		else
+  		{
+  			total = total + toInt(number);
+  		}
+  		
 	}
+
 	if(list.size() > 0)
 	{
 		ThrowExceptionNegatives(list);
 	}
+
 	return total;
   }
 
