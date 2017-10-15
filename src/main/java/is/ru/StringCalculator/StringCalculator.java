@@ -1,5 +1,7 @@
 package is.ru.StringCalculator;
 
+import java.util.ArrayList;
+
 public class StringCalculator
 {
 
@@ -31,15 +33,53 @@ public class StringCalculator
   private static int sum(String[] numbers)
   {
   	int total = 0;
+  	ArrayList<Integer> list = new ArrayList<Integer>();
   	for(String number : numbers)
   	{
+  		if(CheckForNegative(number))
+  		{
+  			list.add(toInt(number));
+  		}
   		total = total + toInt(number);
 	}
-  		return total;
+	if(list.size() > 0)
+	{
+		ThrowExceptionNegatives(list);
+	}
+	return total;
   }
 
   private static String[] splitNumbersNewLineAndComma(String numbers)
   {
   	return numbers.split("(\n)|(,)");
   }
+
+  private static void ThrowExceptionNegatives( ArrayList<Integer> list ) throws IllegalArgumentException 
+  {
+		String negative_string = "";
+		for(int i = 0; i < list.size(); i++)
+		{
+			if(i == 0)
+			{
+				negative_string = negative_string + list.get(i);
+			}
+
+			else 
+			{
+				negative_string = negative_string + ", " + list.get(i);
+			}
+		}
+
+		throw new IllegalArgumentException("Negatives not allowed: " + negative_string);
+  }
+
+  private static boolean CheckForNegative(String number)
+  {
+  	if(toInt(number) < 0)
+  	{
+  		return true;
+  	}
+  	return false;
+  }
+
 }
