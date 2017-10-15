@@ -12,7 +12,7 @@ public class StringCalculator
   		return 0;
   	}
 
-  	else if(text.contains("\n") || text.contains(","))
+  	else if(text.contains("\n") || text.contains(",") || text.contains("//"))
   	{
   		return sum(splitNumbersNewLineAndComma(text));
   	}
@@ -41,7 +41,7 @@ public class StringCalculator
 			//Does nothing if bigger than 1000
 		}
 
-  		else if(CheckForNegative(number))
+  		else if(NegativeCheck(number))
   		{
   			list.add(toInt(number));
   		}
@@ -55,7 +55,7 @@ public class StringCalculator
 
 	if(list.size() > 0)
 	{
-		ThrowExceptionNegatives(list);
+		ThrowException(list);
 	}
 
 	return total;
@@ -63,10 +63,22 @@ public class StringCalculator
 
   private static String[] splitNumbersNewLineAndComma(String numbers)
   {
-  	return numbers.split("(\n)|(,)");
+  	String delimiter = ",|\n";
+  	if(numbers.startsWith("//"))
+  	{
+  		int deliIndex = numbers.indexOf("//") + 2;
+  		delimiter = delimiter + "|" + numbers.substring(deliIndex,deliIndex + 1);
+  		numbers = numbers.substring(deliIndex + 2);
+  		return numbers.split(delimiter);
+  	}
+  	else
+  	{
+  		return numbers.split("(\n)|(,)");
+  	}
+  	
   }
 
-  private static void ThrowExceptionNegatives( ArrayList<Integer> list ) throws IllegalArgumentException 
+  private static void ThrowException( ArrayList<Integer> list ) throws IllegalArgumentException 
   {
 		String negative_string = "";
 		for(int i = 0; i < list.size(); i++)
@@ -85,7 +97,7 @@ public class StringCalculator
 		throw new IllegalArgumentException("Negatives not allowed: " + negative_string);
   }
 
-  private static boolean CheckForNegative(String number)
+  private static boolean NegativeCheck(String number)
   {
   	if(toInt(number) < 0)
   	{
