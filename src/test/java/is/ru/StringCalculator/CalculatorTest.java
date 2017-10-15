@@ -8,6 +8,18 @@ public class CalculatorTest
   @Test
   public void testEmptyString()
   {
-    assertEquals(0,StringCalculator.add(""));
+    assertEquals(0, StringCalculator.add(""));
+  }
+
+  @Test
+  public void testOneNumber()
+  {
+    assertEquals(1, StringCalculator.add("1"));
+  }
+
+  @Test
+  public void testTowNumber()
+  {
+    assertEquals(3, StringCalculator.add("1,2"));
   }
 }

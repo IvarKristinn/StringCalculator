@@ -1,6 +1,1 @@
-#!/bin/bash
-if [ ! -d classes ]; then
-  mkdir classes
-fi
-
-javac -classpath "classes;lib/junit-4.12.jar" src/test/java/is/ru/StringCalculator/*.java -d classes
+javac -cp "src/test/resources/junit-4.12.jar;classes/" src/test/java/is/ru/StringCalculator/*.java -d classes
