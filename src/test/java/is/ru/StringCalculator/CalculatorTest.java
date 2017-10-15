@@ -23,9 +23,17 @@ public class CalculatorTest
     assertEquals(3, StringCalculator.add("1,2"));
   }
 
-   @Test
+  @Test
   public void testMultipleNumbers()
   {
     assertEquals(6, StringCalculator.add("1,2,3"));
   }
+
+  @Test
+  public void testUnknownNumbers()
+  {
+    assertEquals(10+15+32+56, StringCalculator.add("10,15,32,56"));
+  }
+
+
 }

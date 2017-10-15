@@ -16,10 +16,12 @@ public class StringCalculator
   	}
   	
   	else
+  	{
   		return 1;
+  	}
   	
   		
-  	}	
+  }	
   	
   
 
