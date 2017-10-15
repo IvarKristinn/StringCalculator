@@ -40,4 +40,10 @@ public class CalculatorTest
   {
     assertEquals(3, StringCalculator.add("1\n2"));
   }
+
+  @Test
+  public void testNewLineAndComma()
+  {
+    assertEquals(6, StringCalculator.add("1\n2,3"));
+  }
 }

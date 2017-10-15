@@ -10,11 +10,16 @@ public class StringCalculator
   		return 0;
   	}
 
+  	else if(text.contains("\n") && text.contains(","))
+  	{
+  		return sum(splitNumbersNewLineAndComma(text));
+  	}
+
   	else if(text.contains("\n"))
   	{
   		return sum(splitNumbersNewLine(text));
   	}
-  	
+
   	else if(text.contains(","))
   	{
   		return sum(splitNumbers(text));
@@ -53,5 +58,10 @@ public class StringCalculator
   private static String[] splitNumbersNewLine(String numbers)
   {
   	return numbers.split("\n");
+  }
+
+  private static String[] splitNumbersNewLineAndComma(String numbers)
+  {
+  	return numbers.split("(\n)|(,)");
   }
 }
